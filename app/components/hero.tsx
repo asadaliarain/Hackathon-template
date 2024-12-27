@@ -1,70 +1,122 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 function Hero() {
+  const product = [
+    { id: 1, name: "Trenton modular sofa_3", price: "Rs. 25,000.00", image: "/image1.jpg" },
+    { id: 2, name: "Granite dining table with dining chair", price: "Rs. 30,000.00", image: "/image2.jpg" },
+    { id: 3, name: "Outdoor bar table and stool", price: "Rs. 20,000.00", image: "/image3.jpg" },
+    { id: 4, name: "Plain console with teak mirror", price: "Rs. 15,000.00", image: "/image4.jpg" },
+  ];
+
   return (
-    <div>
-      {/* 1st section */}
-        <section className="bg-[#FBEBB5] min-h-screen flex items-center px-4 md:px-16">
-
+    <>
+      {/* Hero Section */}
+      <section className="bg-[#FBEBB5] min-h-screen flex items-center px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-            {/*left content */}
-
-            <div className="flex flex-col justify-center space-y-4">
-                <h1 className="font-medium text-[64px] space-[35px] w-[440px] h-[192px]">Rocket single <br/>seater</h1>
-                <a href="/Shop">
-                <h6 className="inline-block font-medium text-[24px] pd- underline hover:no-underline  hover:text-gray-600 transition ">
-                    Shop Now</h6></a>
-            </div>
-
-
-            {/*Right content Picture */}
-            <div className="flex justify-center items-center">
-
-            <Image src="/Single seater picture.png" alt="Cheir Picture" height={1200} width={1200} className="bg-[#FBEBB5]" ></Image>
-            </div>
-        </div>
-        </section>
-
-
-        <section className="flex justify-center w-full h-auto bg-[#FAF4F4] gap-[30px]">
-          <div className="w-[605px] h-[593px] ml-[100px] mt-[51px]">
-            <Image src="/Granite square side table 1.png" alt="side table" width={300} height={300} />
-
-            <h3 className="font-medium text-[36px] ">Side table</h3>
-            <h6 className="underline ">view More</h6>
-
+          {/* Left Content */}
+          <div className="flex flex-col justify-center space-y-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-medium leading-tight">
+              Rocket single <br /> seater
+            </h1>
+            <Link href="/Shop" className="text-lg sm:text-xl font-medium underline hover:no-underline hover:text-gray-600 transition">
+              Shop Now
+            </Link>
           </div>
-
-          <div className="w-[605px] h-[593px] mt-[51px]">
-          <Image src="/Cloud sofa three seater + ottoman_3 1.png" alt="side table" width={300} height={300}/>
-           
-          <h3 className="font-medium text-[36px]">Side table</h3>
-          <h6 className="underline ">view More</h6>
-
+          {/* Right Content (Image) */}
+          <div className="flex justify-center items-center">
+            <Image
+              src="/Single seater picture.png"
+              alt="Chair Picture"
+              height={600}
+              width={600}
+              className="object-cover"
+            />
           </div>
-        </section>
-
-        {/* Top Pic Section */}
-        <div className="w-full bg-[#FFFFFF] ">
-
-          <h1 className="flex justify-center items-center font-medium text-[36px]">Top Picks For You</h1>
-          <p className="flex justify-center items-center font-medium text-[16px] text-[#9F9F9F]">Find a bright ideal to suit your taste with our great selection of suspension, floor and table lights.</p>
-            <div className="flex grid-cols-4 justify-between ">
-              <Image src="/Mask group.png" alt="Cheir Pic" width={287} height={287}/>
-              <Image src="/Mask group1.png" alt="Cheir Pic" width={287} height={287}/>
-              <Image src="/Mask group2.png" alt="Cheir Pic" width={287} height={287}/>
-              <Image src="/Mask group3.png" alt="Cheir Pic" width={287} height={287}/>
-
-            </div>
-            <h6 className="underline flex justify-center items-center font-medium text=[20px]">view More</h6>
         </div>
+      </section>
 
+      {/* Second Section */}
+      <section className="flex flex-wrap justify-center gap-10 px-6 sm:px-10 lg:px-16 py-10 bg-[#FAF4F4]">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/Granite square side table 1.png"
+            alt="Side Table"
+            width={300}
+            height={300}
+            className="object-cover rounded-lg"
+          />
+          <h3 className="text-xl font-medium mt-4">Side Table</h3>
+          <Link href="/Shop" className="underline text-gray-600 hover:text-black">
+            View More
+          </Link>
+        </div>
+        <div className="flex flex-col items-center">
+          <Image
+            src="/Cloud sofa three seater + ottoman_3 1.png"
+            alt="Cloud Sofa"
+            width={300}
+            height={300}
+            className="object-cover rounded-lg"
+          />
+          <h3 className="text-xl font-medium mt-4">Side Table</h3>
+          <Link href="/Shop" className="underline text-gray-600 hover:text-black">
+            View More
+          </Link>
+        </div>
+      </section>
 
+      {/* Top Picks Section */}
+      <section className="px-6 sm:px-10 lg:px-16 py-12 bg-white">
+        <h1 className="text-2xl sm:text-3xl font-medium text-center">Top Picks For You</h1>
+        <p className="text-sm sm:text-base text-center text-gray-500 mt-4">
+          Find a bright ideal to suit your taste with our great selection of suspension, floor, and table lights.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+          {product.map((product) => (
+            <div key={product.id} className="text-center">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={300}
+                height={300}
+                className="rounded-lg"
+              />
+              <h4 className="text-lg font-semibold mt-4">{product.name}</h4>
+              <p className="text-base font-bold text-gray-800">{product.price}</p>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mt-10">
+          <Link href="/Shop" className="underline text-gray-600 hover:text-black">
+            View More
+          </Link>
+        </div>
+      </section>
 
-
-    </div>
-  )
+      {/* New Arrivals Section */}
+      <section className="flex flex-wrap items-center gap-6 px-6 sm:px-10 lg:px-16 py-12 bg-[#FFF9E5]">
+        <div className="flex-1 flex justify-center">
+          <Image
+            src="/Asgaard-Sofa.png"
+            alt="Asgaard Sofa"
+            width={500}
+            height={400}
+            className="object-cover"
+          />
+        </div>
+        <div className="flex-1 text-center">
+          <h6 className="text-lg sm:text-xl font-medium">New Arrivals</h6>
+          <h1 className="text-3xl sm:text-4xl font-bold mt-4">Asgaard Sofa</h1>
+          <Button variant="outline" className="bg-[#FFF9E5] mt-6">
+            Order Now
+          </Button>
+        </div>
+      </section>
+    </>
+  );
 }
 
-export default Hero
+export default Hero;
